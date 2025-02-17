@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #8da1a2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Press Start 2P', cursive;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            height: 70vh;
+            background-color: #f7f1e6;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            position: absolute;
+            right: 20px;
+            top: 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar div {
+            width: 180px;
+            height: 180px;
+            background-color: #a53d2d;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar div:hover {
+            opacity: 0.3;
+            transform: scale(0.9);
+        }
+
+        .large-image {
+            width: 70%;
+            height: 80%;
+            background-color: #f7f1e6;
+            border-radius: 20px;
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .sidebar div:hover ~ .large-image {
+            opacity: 1;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer div {
+            width: 50px;
+            height: 50px;
+            background-color: #2f4a4a;
+            border-radius: 50%;
+        }
+
+        .header {
+            width: 80%;
+            height: 40px;
+            background-color: #f7f1e6;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: black;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Art Gallery</div>
+    <div class="container">
+        Welcome to Art Gallery
+        <div class="sidebar">
+            <div style="background-image: url('https://i.pinimg.com/736x/9a/d0/1a/9ad01a0f06ffd67a64e12165bc45682b.jpg');" class="image-small"></div> <!-- Ảnh 1 -->
+            <div style="background-image: url('https://i.pinimg.com/736x/d2/30/a9/d230a90a7b6ba93a761509ab3e9015b0.jpg');" class="image-small"></div> <!-- Ảnh 2 -->
+            <div style="background-image: url('https://i.pinimg.com/736x/02/50/d9/0250d9540326f76d14fac9b2553f875f.jpg');" class="image-small"></div> <!-- Ảnh 3 -->
+        </div>
+        <div class="large-image" id="largeImage"></div>
+    </div>
+    <div class="footer">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script>
+        const smallImages = document.querySelectorAll('.image-small');
+        const largeImage = document.getElementById('largeImage');
+        smallImages.forEach((smallImage) => {
+            smallImage.addEventListener('mouseenter', () => {
+                const backgroundImage = smallImage.style.backgroundImage;
+                largeImage.style.backgroundImage = backgroundImage;
+                largeImage.style.opacity = 1;
+            });
+            smallImage.addEventListener('mouseleave', () => {
+                largeImage.style.opacity = 0;
+            });
+        });
+    </script>
+</body>
+</html>
